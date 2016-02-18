@@ -1,0 +1,3 @@
+# Homie
+
+Home automation playground :)
