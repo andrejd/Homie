@@ -29,9 +29,9 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MQTTService extends Service {
+public class MqttService extends Service {
 
-    private static final String TAG = "MQTTService";
+    private static final String TAG = "MqttService";
     private static boolean hasWifi = false;
     private static boolean hasMmobile = false;
     private Thread thread;
@@ -100,7 +100,7 @@ public class MQTTService extends Service {
             h.post(new Runnable() {
                 @Override
                 public void run() {
-                    Intent launchA = new Intent(MQTTService.this, MainActivity.class);
+                    Intent launchA = new Intent(MqttService.this, MainActivity.class);
                     launchA.putExtra("message", msg.getPayload());
                     //TODO write somethinkg that has some sense
                     if (Build.VERSION.SDK_INT >= 11) {
@@ -116,8 +116,8 @@ public class MQTTService extends Service {
     }
 
     public class MQTTBinder extends Binder {
-        public MQTTService getService(){
-            return MQTTService.this;
+        public MqttService getService(){
+            return MqttService.this;
         }
     }
 

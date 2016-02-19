@@ -2,10 +2,10 @@
 <manifest package="com.kvajpoj.homie"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--        <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 
@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
 
 
-        <service android:name="com.kvajpoj.homie.MQTTService"></service>
+        <service android:name=".MqttService"></service>
 
         <activity
             android:name=".MainActivity"
