@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        startService(new Intent(this, MQTTService.class));
+        startService(new Intent(this, MqttService.class));
     }
 
     @Override
