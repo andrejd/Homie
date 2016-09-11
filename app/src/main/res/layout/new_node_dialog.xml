@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dp"
+        android:text="Node name"
+        android:textColor="#80000000"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/node_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:paddingTop="3dp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        tools:text="name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="3dp"
+        android:text="Node type"
+        android:textColor="#80000000"
+        android:textSize="14sp" />
+
+
+    <RadioGroup
+        android:id="@+id/radioType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="-3dp"
+        android:paddingTop="2dp">
+
+        <RadioButton
+            android:id="@+id/node_sensor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Sensor" />
+
+        <RadioButton
+            android:id="@+id/node_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Switch" />
+
+        <RadioButton
+            android:id="@+id/node_webcam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Webcam" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/item_sensor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="3dp"
+            android:text="Sensor value topic"
+            android:textColor="#80000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/node_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:inputType="text"
+            android:paddingTop="3dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            tools:text="hello" />
+
+
+    </LinearLayout>
+
+
+    <!-- Webcam -->
+    <LinearLayout
+        android:id="@+id/item_webcam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="3dp"
+            android:text="Webcam URL address"
+            android:textColor="#80000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/node_webcam_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:inputType="text"
+            android:paddingTop="3dp"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="3dp"
+            android:text="Webcam username (if needed)"
+            android:textColor="#80000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/node_webcam_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:inputType="text"
+            android:paddingTop="3dp"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+
+        <!-- Webcam password  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="3dp"
+            android:text="Webcam username (if needed)"
+            android:textColor="#80000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/node_webcam_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:inputType="text"
+            android:paddingTop="3dp"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

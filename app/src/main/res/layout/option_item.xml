@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- style="?android:attr/spinnerItemStyle"
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@android:id/text1"
+        style="?android:attr/spinnerItemStyle"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:layout_marginLeft="20dp"
+        android:padding="10dp"
+        android:paddingLeft="30dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:text="Kvajpoj"
+        android:textAlignment="inherit"/>-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="6dip">
+
+    <ImageView
+        android:id="@+id/item_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dip"
+        android:layout_marginStart="16dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_infrared_sensor_icon_24dp" />
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_toRightOf="@id/item_icon"
+        android:gravity="center_vertical"
+        android:text="Example application"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/item_desc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/item_icon"
+        android:layout_below="@id/item_name"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Description"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>
+
+
+

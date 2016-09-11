@@ -1,20 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<!--
+     This Linear layout will be placed inside Coordinator layout so in
+     order to be placed below topbar, we need to apply app:layout_behavior
+     properity
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.kvajpoj.homie.MainActivity"
-    tools:showIn="@layout/activity_main">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <TextView
+
+
+   <!-- <TextView
+        android:id="@+id/statusView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-</RelativeLayout>
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/topicView"
+        android:layout_marginTop="48dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/messageView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/timestampView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/secondary_text_light"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/publishLabelView"
+        android:layout_marginTop="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Publish"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/publishEditView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10" >
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/publishButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Publish now!"/>
+    <Button
+        android:id="@+id/btnDisconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disconnect"/>
+
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect"/>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/myrecyclerview"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!--<co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView
+        android:id="@+id/realm_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:rrvIsRefreshable="false"
+        app:rrvLayoutType="Grid"
+        app:rrvGridLayoutSpanCount="2"
+        />-->
+
+</LinearLayout>
