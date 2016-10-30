@@ -27,6 +27,7 @@ public class Homie extends Application {
 
         LogConfigurator logConfigurator = new LogConfigurator();
 
+        // check if external storage is connected, e.g. sd card
         //logConfigurator.setFileName(Environment.getExternalStorageDirectory()
         //        + File.separator + "MyApp" + File.separator + "logs"
         //        + File.separator + "log4j.txt");
