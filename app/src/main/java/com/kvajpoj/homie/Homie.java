@@ -13,9 +13,7 @@ import de.mindpipe.android.logging.log4j.LogConfigurator;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-/**
- * Created by Andrej on 29.8.2015.
- */
+
 public class Homie extends Application {
 
     @Override
@@ -28,20 +26,22 @@ public class Homie extends Application {
         Realm.setDefaultConfiguration(config);
 
         LogConfigurator logConfigurator = new LogConfigurator();
-        logConfigurator.setFileName(Environment.getExternalStorageDirectory()
-                + File.separator + "MyApp" + File.separator + "logs"
-                + File.separator + "log4j.txt");
+
+        //logConfigurator.setFileName(Environment.getExternalStorageDirectory()
+        //        + File.separator + "MyApp" + File.separator + "logs"
+        //        + File.separator + "log4j.txt");
         logConfigurator.setRootLevel(Level.DEBUG);
         logConfigurator.setLevel("org.apache", Level.ERROR);
         logConfigurator.setFilePattern("%d %-5p [%c{2}]-[%L] %m%n");
-        logConfigurator.setMaxFileSize(1024 * 1024 * 5);
-        logConfigurator.setImmediateFlush(true);
+        logConfigurator.setUseFileAppender(false);
+        //logConfigurator.setMaxFileSize(1024 * 1024 * 5);
+        //logConfigurator.setImmediateFlush(true);
         logConfigurator.configure();
 
-        Logger LOG;
-        LOG = Logger.getLogger(Homie.class);
+        //Logger LOG;
+        //LOG = Logger.getLogger(Homie.class);
 
-        LOG.debug(logConfigurator.getFileName());
+        //LOG.debug(logConfigurator.getFileName());
 
         super.onCreate();
     }
