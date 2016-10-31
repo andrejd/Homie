@@ -558,7 +558,8 @@ public class MainActivity extends AppCompatActivity implements
                             RealmResults<Node> nodes = myRecyclerViewAdapter.getRealmResults();
                             LOG.debug(item.getId());
                             Node n = nodes.where().equalTo("id", item.getCurrentNode().getId()).findFirst();
-                            if (n != null) n.removeFromRealm();
+                            //if (n != null) n.removeFromRealm();
+                            if (n != null) n.deleteFromRealm();
                             realm.commitTransaction();
                             myRecyclerViewAdapter.notifyDataSetChanged();
                         }

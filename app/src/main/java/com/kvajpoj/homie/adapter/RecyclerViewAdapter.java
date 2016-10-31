@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.load.model.LazyHeaderFactory;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.daimajia.swipe.SwipeLayout;
 import com.kvajpoj.homie.R;
@@ -62,7 +61,7 @@ public class RecyclerViewAdapter
 
     public RealmResults getRealmResults()
     {
-        return this.realmResults;
+        return this.getData().sort("position");
     }
 
     @Override
@@ -125,7 +124,7 @@ public class RecyclerViewAdapter
             Realm realm = Realm.getDefaultInstance();
 
             List<Node> list = new ArrayList<>();
-            list.addAll(realmResults);
+            list.addAll(getRealmResults());
 
             LOG.debug("Swaping position " + origPosition + " to position " + endPosition);
 
@@ -150,7 +149,7 @@ public class RecyclerViewAdapter
             realm.close();
             //---------------------
 
-            realmResults.sort("position", Sort.DESCENDING);
+            //realmResults.sort("position", Sort.DESCENDING);
 
             if (mDragStartListener != null)
                 mDragStartListener.onStopDrag(null);
