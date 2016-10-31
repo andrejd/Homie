@@ -7,12 +7,15 @@
     <PreferenceCategory android:title="Mqtt Server details" >
 
         <EditTextPreference
+            android:id="@+id/prefServerAddress"
             android:key="@string/pMqttServerAddress"
             android:title="MQTT server address"
             android:summary="URI of Mqtt server"
             android:defaultValue=""
             android:icon="@drawable/ic_public_24dp"
-            android:dialogTitle="Mqtt server address" />
+            android:dialogTitle="Mqtt server address"
+            android:singleLine="true"
+            android:dialogIcon="@drawable/ic_public_24dp" />
 
         <EditTextPreference
             android:key="@string/pMqttServerPort"
@@ -20,7 +23,10 @@
             android:summary="Port number for Mqtt server"
             android:defaultValue="1983"
             android:icon="@drawable/ic_looks_one_24dp"
-            android:dialogTitle="Mqtt server port number" />
+            android:dialogTitle="Mqtt server port number"
+            android:numeric="integer"
+            android:singleLine="true"
+            android:dialogIcon="@drawable/ic_looks_one_24dp" />
 
         <EditTextPreference
             android:key="@string/pMqttUsername"
@@ -28,7 +34,9 @@
             android:summary="Username"
             android:defaultValue=""
             android:icon="@drawable/ic_person_24dp"
-            android:dialogTitle="Username" />
+            android:dialogTitle="Username"
+            android:singleLine="true"
+            android:dialogIcon="@drawable/ic_person_24dp" />
 
         <EditTextPreference
             android:key="@string/pMqttPassword"
@@ -36,7 +44,10 @@
             android:summary="Password"
             android:defaultValue=""
             android:icon="@drawable/ic_lock_outline_24dp"
-            android:dialogTitle="Password" />
+            android:dialogTitle="Password"
+            android:password="true"
+            android:singleLine="true"
+            android:dialogIcon="@drawable/ic_lock_outline_24dp" />
 
     </PreferenceCategory>
 
