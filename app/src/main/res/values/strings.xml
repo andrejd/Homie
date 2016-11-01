@@ -27,6 +27,8 @@
     <string name="promptTopic">Topic</string>
     <string name="prompt_web">Image Web address</string>
     <string name="prefPasswordPrompt">Tap to set password</string>
+    <string name="prefUsernamePrompt">Tap to set username</string>
+    <string name="prefServerPrompt">Tap to set Mqtt server address</string>
 
 
 </resources>
