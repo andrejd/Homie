@@ -32,6 +32,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.kvajpoj.homie.R;
 import com.kvajpoj.homie.adapter.RecyclerViewAdapter;
 import com.kvajpoj.homie.model.Node;
+import com.kvajpoj.homie.model.Settings;
 import com.kvajpoj.homie.service.MqttService;
 import com.kvajpoj.homie.service.MqttServiceDelegate;
 import com.kvajpoj.homie.touch.OnStartDragListener;
@@ -57,34 +58,21 @@ public class MainActivity extends AppCompatActivity implements
         RecyclerViewAdapter.OnItemClickListener {
 
     private static final String TAG = "MainActivity";
-
-    @Bind(R.id.colapse)
-    Button colapse;
-    @Bind(R.id.cntnt)
-    FrameLayout cntnt;
-
-
-    private MqttServiceDelegate.MessageReceiver msgReceiver;
     private MqttServiceDelegate.StatusReceiver statusReceiver;
-
-
-    @Bind(R.id.fab)
-    FloatingActionButton fabButton;
-
-    @Bind(R.id.myrecyclerview)
-    RecyclerView myRecyclerView;
-
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
+    private MqttServiceDelegate.MessageReceiver msgReceiver;
 
     private Logger LOG;
     private ItemTouchHelper mItemTouchHelper;
-
-    private StaggeredGridLayoutManager staggeredGridLayoutManagerVertical;
+    //private StaggeredGridLayoutManager staggeredGridLayoutManagerVertical;
     private GridLayoutManager gridLayoutManager;
     private RecyclerViewAdapter myRecyclerViewAdapter;
-
     private Handler mTimerHandler;
+
+    @Bind(R.id.colapse) Button colapse;
+    @Bind(R.id.cntnt)   FrameLayout cntnt;
+    @Bind(R.id.fab) FloatingActionButton fabButton;
+    @Bind(R.id.myrecyclerview) RecyclerView myRecyclerView;
+    @Bind(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +105,9 @@ public class MainActivity extends AppCompatActivity implements
 
         //Start service if not started
         LOG.debug("Starting service");
-        MqttServiceDelegate.startService(this);
+        Settings set = Settings.getInstance();
+        set.reloadSettings(this);
+        MqttServiceDelegate.startService(this, set.getServerUrl(), set.getServerPort(), set.getUsername(), set.getPassword());
 
         // Get a Realm instance for this thread
         Realm realm = Realm.getDefaultInstance();
@@ -131,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements
         myRecyclerViewAdapter.setOnItemClickListener(this);
 
         // create layout manager for data
-        staggeredGridLayoutManagerVertical = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
+        //staggeredGridLayoutManagerVertical = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         gridLayoutManager = new GridLayoutManager(this, 2);
 
         // assign adapter and layout manager to recycler view

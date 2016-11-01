@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.provider.Settings;
+import android.util.Log;
 
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
@@ -22,18 +23,18 @@ import java.util.concurrent.Executors;
 
 import org.apache.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.IMqttAsyncClient;
-import org.eclipse.paho.client.mqttv3.IMqttClient;
+//import org.eclipse.paho.client.mqttv3.IMqttClient;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
+//import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
-import java.lang.ref.WeakReference;
+//import java.lang.ref.WeakReference;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -119,10 +120,9 @@ public class MqttService extends Service implements MqttCallback {
 
         changeStatus(MQTTConnectionStatus.INITIAL);
 
-        //mBinder = new LocalBinder<MqttService>(this);
-
-        brokerHostName = "192.168.1.210";
+        //brokerHostName = "192.168.1.210";
         topicNames.add("hello");
+
 
         executor = Executors.newFixedThreadPool(2);
     }
@@ -134,11 +134,21 @@ public class MqttService extends Service implements MqttCallback {
             LOG.debug("onStartCommand: intent=null, flags=" + flags + ", startId=" + startId);
         }
         else {
-            LOG.debug("onStartCommand: intent="+intent+", flags="+flags+", startId="+startId);
-        }
+            LOG.debug("onStartCommand: intent="+intent+", flags="+flags+", startId="+ startId);
 
+            if(intent.getExtras() != null) {
+                brokerHostName = intent.getExtras().getString("serverUrl", "");
+                brokerPortNumber = Integer.parseInt(intent.getExtras().getString("serverPort", "1883"));
+                username = intent.getExtras().getString("username", "guest");
+                if (username.isEmpty()) username = "guest";
+                String pass = intent.getExtras().getString("password", "guest");
+                if (pass.isEmpty()) pass = "guest";
+                password = pass.toCharArray();
+            }
+        }
         doStart(intent, startId);
-        return START_STICKY;
+        //return START_STICKY;
+        return START_REDELIVER_INTENT;
     }
 
     private void doStart(final Intent intent, final int startId){

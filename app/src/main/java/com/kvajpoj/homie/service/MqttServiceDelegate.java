@@ -8,22 +8,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.kvajpoj.homie.service.MqttService;
 import com.kvajpoj.homie.service.MqttService.MQTTConnectionStatus;
 
 public class MqttServiceDelegate
 {
     public interface MessageHandler{
         public void handleMessage(String topic, byte[] payload);
-
     }
 
     public interface StatusHandler{
         public void handleStatus(MQTTConnectionStatus status, String reason);
     }
 
-    public static void startService(Context context){
+    public static void startService(Context context, String serverUrl, String serverPort, String username, String password){
         Intent svc = new Intent(context, MqttService.class);
+        svc.putExtra("serverUrl", serverUrl);
+        svc.putExtra("serverPort", serverPort);
+        svc.putExtra("username", username);
+        svc.putExtra("password", password);
         context.startService(svc);
     }
 
