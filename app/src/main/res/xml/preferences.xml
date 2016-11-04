@@ -7,7 +7,6 @@
     <PreferenceCategory android:title="Mqtt Server details" >
 
         <EditTextPreference
-            android:id="@+id/prefServerAddress"
             android:key="@string/pMqttServerAddress"
             android:title="MQTT server address"
             android:summary="URI of Mqtt server"
@@ -51,11 +50,21 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="Homie node auto discovery">
+
+        <Preference android:title="Tap to automatically search for Homie nodes"
+        android:key="@string/pHomieAutoDiscovery"
+        android:summary="New nodes will be added to list and existing will be updated with latest data"/>
+
+
+    </PreferenceCategory>
+
     <PreferenceCategory  android:title="About Homie">
 
         <Preference
             android:title="Version 1.0"
             android:summary="All rights reserved\nAndrej Debeljak\n2016"/>
+
 
     </PreferenceCategory>
 

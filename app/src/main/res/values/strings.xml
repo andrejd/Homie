@@ -29,6 +29,7 @@
     <string name="prefPasswordPrompt">Tap to set password</string>
     <string name="prefUsernamePrompt">Tap to set username</string>
     <string name="prefServerPrompt">Tap to set Mqtt server address</string>
+    <string name="pHomieAutoDiscovery">pHomieAutoDiscovery</string>
 
 
 </resources>

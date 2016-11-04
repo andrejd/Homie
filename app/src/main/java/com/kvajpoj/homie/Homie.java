@@ -12,6 +12,7 @@ import java.io.File;
 import de.mindpipe.android.logging.log4j.LogConfigurator;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmList;
 
 
 public class Homie extends Application {
@@ -26,6 +27,7 @@ public class Homie extends Application {
                 .build();
 
         Realm.setDefaultConfiguration(config);
+        Realm.deleteRealm(config);
 
         LogConfigurator logConfigurator = new LogConfigurator();
 

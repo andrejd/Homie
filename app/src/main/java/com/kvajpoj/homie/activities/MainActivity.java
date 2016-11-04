@@ -31,6 +31,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kvajpoj.homie.R;
 import com.kvajpoj.homie.adapter.RecyclerViewAdapter;
+import com.kvajpoj.homie.model.Homie;
 import com.kvajpoj.homie.model.Node;
 import com.kvajpoj.homie.model.Settings;
 import com.kvajpoj.homie.service.MqttService;
@@ -326,17 +327,7 @@ public class MainActivity extends AppCompatActivity implements
                             if (nodeSwitch.isChecked() == true) n.setType(Node.MQTT_SWITCH);
                             if (nodeWebcam.isChecked() == true) n.setType(Node.WEBCAM);
 
-                            Number newPostion = 1;
-
-                            RealmResults<Node> nodes = realm.where(Node.class).findAll();
-                            if (nodes.size() > 0) {
-                                newPostion = nodes.max("position").intValue();
-                            } else {
-                                newPostion = 0;
-                            }
-
-                            int pos = newPostion.intValue() + 1;
-                            n.setPosition(pos);
+                            n.setPosition(getPosition(realm));
 
                             realm.beginTransaction();
                             realm.copyToRealm(n);
@@ -504,11 +495,120 @@ public class MainActivity extends AppCompatActivity implements
     public void handleMessage(String topic, byte[] payload) {
         String message = new String(payload);
 
-        LOG.debug("handleMessage: topic=" + topic + ", message=" + message);
+        LOG.info("handleMessage: topic=" + topic + ", message=" + message);
 
         //if (timestampView != null) timestampView.setText("When: " + getCurrentTimestamp());
         //if (topicView != null) topicView.setText("Topic: " + topic);
         //if (messageView != null) messageView.setText("Message: " + message);
+
+        // first we get base topic and device id
+        String tmp = Homie.getBaseTopic(topic);
+        if(tmp.equals("devices")) {
+            tmp = Homie.getDeviceId(topic);
+            if(!tmp.isEmpty()) {
+
+                Realm realm = Realm.getDefaultInstance();
+
+                Homie h = realm.where(Homie.class).equalTo("deviceId", tmp).findFirst();
+                if( h == null ) {
+                    h = new Homie();
+                    h.setDeviceId(tmp);
+                    realm.beginTransaction();
+                    Homie realmHomie = realm.copyToRealm(h);
+                    realm.commitTransaction();
+                    h = realmHomie;
+                    LOG.debug("New Homie created");
+                }
+
+                // find property or
+                tmp = Homie.getDeviceProperty(topic);
+                if(!tmp.isEmpty()){
+
+                    LOG.debug("We got property " + tmp + " " + message);
+
+                    if (tmp.equals("$nodes")) {
+
+                        // parse nodes and create Node objects if not already present
+                        String[] nodes = message.split(",");
+                        for (int i = 0; i < nodes.length; i++) {
+                            String[] node = nodes[i].split(":");
+                            if(node.length == 2){
+
+                                Node n = h.getNodes().where().contains( "name", h.getDeviceId() + "-" + node[0] ).findFirst();
+                                if( n == null ) {
+                                    LOG.info("Creating new node " + h.getDeviceId() + "-" + node[0]);
+                                    realm.beginTransaction();
+
+                                    n = new Node();
+                                    n.setType(Node.MQTT_SENSOR);
+                                    n.setName(h.getDeviceId() + "-" + node[0]);
+                                    n.setPosition(getPosition(realm));
+                                    n.setHomie(h);
+                                    h.getNodes().add(n);
+
+                                    realm.commitTransaction();
+                                    myRecyclerViewAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+
+                    tmp = Homie.getNode(topic);
+                    if(!tmp.isEmpty()){
+
+                        LOG.debug("we got node: " + tmp);
+                        Node n = h.getNodes().where().contains( "name", h.getDeviceId() + "-" + tmp ).findFirst();
+                        if (n != null) {
+                            realm.beginTransaction();
+                            n.setValue(message);
+                            realm.commitTransaction();
+                            myRecyclerViewAdapter.notifyDataSetChanged();
+                        }
+                        else {
+                            LOG.error("Device node not found!!!! "  + topic + " " + message);
+                        }
+
+                    }
+                    else {
+                        LOG.debug("we got no node: " + topic);
+
+                    }
+                }
+            }
+            else {
+                // topic is short ...
+                LOG.debug("Topic to short " + topic);
+            }
+
+
+        }
+        else {
+            // some other topic ...
+            LOG.debug("Ehh, some other topic ..." + topic);
+        }
+
+
+
+
+
+
+
+
+    }
+
+    private int getPosition(Realm realm) {
+        Number newPostion = 1;
+
+        RealmResults<Node> nodes = realm.where(Node.class).findAll();
+        if (nodes.size() > 0) {
+            newPostion = nodes.max("position").intValue();
+        } else {
+            newPostion = 0;
+        }
+
+        return newPostion.intValue() + 1;
     }
 
     @Override

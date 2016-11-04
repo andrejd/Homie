@@ -83,6 +83,7 @@ public class RecyclerViewAdapter
         Node n = getItem(position);
         if (n != null) {
             holder.setCurrentNode(n);
+
             holder.loadImage();
         }
 
@@ -250,7 +251,9 @@ public class RecyclerViewAdapter
 
 
             this.parent = parent;
+
             textItemName = (TextView) nodeView.findViewById(R.id.name);
+            textItemValue = (TextView) nodeView.findViewById(R.id.value);
             handle = (ImageView) nodeView.findViewById(R.id.handle);
             edit = (ImageView) nodeView.findViewById(R.id.edit);
             delete = (ImageView) nodeView.findViewById(R.id.delete);
@@ -265,12 +268,29 @@ public class RecyclerViewAdapter
 
             if(textItemName != null && currentNode != null){
                 textItemName.setText(currentNode.getName());
+                LOG.debug("SEtting item name: " + currentNode.getName());
+            }
+
+            if(textItemValue!= null && currentNode != null){
+                textItemValue.setText(currentNode.getValue());
+                LOG.debug("SEtting value label: " + currentNode.getValue());
             }
 
 
         }
 
         public boolean loadImage(){
+
+            if(textItemName != null && currentNode != null){
+                textItemName.setText(currentNode.getName());
+                LOG.debug("SEtting item name: " + currentNode.getName());
+            }
+
+            if(textItemValue!= null && currentNode != null){
+                textItemValue.setText(currentNode.getValue());
+                LOG.debug("SEtting value label: " + currentNode.getValue());
+            }
+
 
             if(currentNode != null && currentNode.getType() == Node.WEBCAM){
 

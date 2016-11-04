@@ -21,60 +21,60 @@ public class Node extends RealmObject {
     @PrimaryKey
     private String id;
 
-    @Required // Name cannot be null
+    @Required
     private String name;
 
+    private Homie homie;
     private int type;
     private Date lastSeen;
     private String topic;
+    private int position;
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    // homie
+    private String value;
+    private String unit;
+
 
     //Webcam
+    private String webcamPassword;
     private String webcamUsername;
     private String webcamURL;
 
-    public String getWebcamPassword() {
-        return webcamPassword;
-    }
+    public String getWebcamPassword() { return webcamPassword; }
+    public void setWebcamPassword(String webcamPassword) { this.webcamPassword = webcamPassword; }
 
-    public void setWebcamPassword(String webcamPassword) {
-        this.webcamPassword = webcamPassword;
-    }
+    public String getWebcamURL() { return webcamURL; }
+    public void setWebcamURL(String webcamURL) { this.webcamURL = webcamURL; }
 
-    public String getWebcamURL() {
-        return webcamURL;
-    }
+    public String getWebcamUsername() { return webcamUsername; }
+    public void setWebcamUsername(String webcamUsername) { this.webcamUsername = webcamUsername; }
 
-    public void setWebcamURL(String webcamURL) {
-        this.webcamURL = webcamURL;
-    }
+    // end of web cam
 
-    public String getWebcamUsername() {
-        return webcamUsername;
-    }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public void setWebcamUsername(String webcamUsername) {
-        this.webcamUsername = webcamUsername;
-    }
+    public Homie getHomie() { return homie; }
+    public void setHomie(Homie homie) { this.homie = homie; }
 
-    private String webcamPassword;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    private int position;
+    public int getPosition() { return position; }
+    public void setPosition(int position) { this.position = position; }
 
     public int getType() {
         return type;
@@ -90,16 +90,6 @@ public class Node extends RealmObject {
         this.name = name;
     }
 
-    public Date getLastSeen() {
-        return lastSeen;
-    }
-    public void setLastSeen(Date lastSeen) {
-        this.lastSeen = lastSeen;
-    }
-
-    public String getTopic() {
-        return topic;
-    }
     public void setTopic(String topic) {
         this.topic = topic;
     }

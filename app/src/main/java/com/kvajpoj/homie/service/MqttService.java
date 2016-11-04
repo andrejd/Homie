@@ -121,7 +121,7 @@ public class MqttService extends Service implements MqttCallback {
         changeStatus(MQTTConnectionStatus.INITIAL);
 
         //brokerHostName = "192.168.1.210";
-        topicNames.add("hello");
+        topicNames.add("devices/#");
 
 
         executor = Executors.newFixedThreadPool(2);

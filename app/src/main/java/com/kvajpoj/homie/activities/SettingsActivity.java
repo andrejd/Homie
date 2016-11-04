@@ -55,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
         EditTextPreference mUsername;
         EditTextPreference mPassword;
         EditTextPreference mServerPort;
+        Preference mAutoSearchNodes;
 
         private Logger LOG;
         private SharedPreferences sharedPref;
@@ -69,6 +70,16 @@ public class SettingsActivity extends AppCompatActivity {
 
             sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
             LOG = Logger.getLogger(SettingsActivity.class);
+
+            mAutoSearchNodes = (Preference)findPreference(getString(R.string.pHomieAutoDiscovery));
+            mAutoSearchNodes.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    //code for what you want it to do
+                    LOG.debug("Auto search");
+                    return true;
+                }
+            });
 
             mServerAddress = (EditTextPreference) findPreference("pMqttServerAddress");
             mServerAddress.setOnPreferenceChangeListener(this);
