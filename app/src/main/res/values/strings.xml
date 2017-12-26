@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Homie</string>
+    <string name="app_name" translatable="false">Homies</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -7,7 +7,8 @@
     <string name="pMqttServerAddress" translatable="false">pMqttServerAddress</string>
     <string name="pMqttServerPort" translatable="false">pMqttServerPort</string>
     <string name="pMqttPassword" translatable="false">pMqttPassword</string>
-    <string name="pMqttUsername">pMqttUsername</string>
+    <string name="pMqttUsername" translatable="false">pMqttUsername</string>
+    <string name="pHomieBaseTopic" translatable="false">pHomieBaseTopic</string>
     <string name="title_activity_new_node">Node</string>
 
     <!-- Strings related to login -->
@@ -29,7 +30,12 @@
     <string name="prefPasswordPrompt">Tap to set password</string>
     <string name="prefUsernamePrompt">Tap to set username</string>
     <string name="prefServerPrompt">Tap to set Mqtt server address</string>
-    <string name="pHomieAutoDiscovery">pHomieAutoDiscovery</string>
+    <string name="prefHomieAutoSearch">Auto add all nodes found on homie base topic</string>
+
+    <string name="publish_subtopic_hint"><font size="16">Subtopic</font></string>
+    <string name="publish_values_hint"><font size="16">Value On:Off 1-10</font></string>
+    <string name="new_node_mqtt_help">"When creating new MQTT node you should provide <i>name</i> for the node, topic to which you wish to subscribe and optional unit which will beshown next to received value. <br/>You "</string>
+    <string name="pHomieDeleteNodes">pHomieDeleteNodes</string>
 
 
 </resources>

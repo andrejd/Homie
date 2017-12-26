@@ -1,168 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:animateLayoutChanges="true"
+             tools:background="@color/colorPrimary"
+             android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="3dp"
-        android:text="Node name"
-        android:textColor="#80000000"
-        android:textSize="14sp" />
-
-    <EditText
-        android:id="@+id/node_name"
+    <!-- Confirmation content-->
+    <LinearLayout
+        android:id="@+id/dialogConfirmContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:paddingTop="3dp"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        tools:text="name" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="3dp"
-        android:text="Node type"
-        android:textColor="#80000000"
-        android:textSize="14sp" />
-
-
-    <RadioGroup
-        android:id="@+id/radioType"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="-3dp"
-        android:paddingTop="2dp">
-
-        <RadioButton
-            android:id="@+id/node_sensor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Sensor" />
-
-        <RadioButton
-            android:id="@+id/node_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="Switch" />
-
-        <RadioButton
-            android:id="@+id/node_webcam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="Webcam" />
-
-    </RadioGroup>
-
-    <LinearLayout
-        android:id="@+id/item_sensor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="3dp"
-            android:text="Sensor value topic"
-            android:textColor="#80000000"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/node_topic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:inputType="text"
-            android:paddingTop="3dp"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            tools:text="hello" />
-
-
-    </LinearLayout>
-
-
-    <!-- Webcam -->
-    <LinearLayout
-        android:id="@+id/item_webcam"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:paddingLeft="3dp"
-            android:text="Webcam URL address"
-            android:textColor="#80000000"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/node_webcam_url"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:inputType="text"
-            android:paddingTop="3dp"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="3dp"
-            android:text="Webcam username (if needed)"
-            android:textColor="#80000000"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/node_webcam_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:inputType="text"
-            android:paddingTop="3dp"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:text="Press DELETE NODE again to confirm your choice!"/>
 
 
-        <!-- Webcam password  -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="3dp"
-            android:text="Webcam username (if needed)"
-            android:textColor="#80000000"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/node_webcam_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:inputType="text"
-            android:paddingTop="3dp"
-            android:textColor="#000000"
-            android:textSize="18sp" />
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/dialogMQTTHelpContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="3dp"
+            android:text="@string/new_node_mqtt_help"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialogContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/nodeTypeSelector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingStart="-2dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingTop="-5dp">
+
+
+            <RadioGroup
+                android:id="@+id/radioType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="-2dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/node_mqtt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="MQTT node"/>
+
+                <RadioButton
+                    android:id="@+id/node_webcam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Web camera"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"></LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/new_node_edit_text_layout">
+            <EditText
+                android:id="@+id/node_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="text"
+                style="@style/new_node_edit_text"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <FrameLayout
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- MQTT -->
+            <LinearLayout
+                android:id="@+id/item_mqtt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/new_node_edit_text_layout">
+                    <EditText
+                        android:id="@+id/node_topic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Topic"
+                        style="@style/new_node_edit_text"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/new_node_edit_text_layout">
+                    <EditText
+                        android:id="@+id/node_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/new_node_edit_text"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:nextFocusDown="@+id/node_topic_subtopic"
+                        android:hint="Unit"
+                        tools:text="C"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/new_node_edit_text_layout">
+                        <EditText
+                            android:id="@+id/node_publish_value"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:hint="Value to publish"
+                            android:inputType="textNoSuggestions|textVisiblePassword"
+                            style="@style/new_node_edit_text"/>
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <!-- Webcam -->
+            <LinearLayout
+                android:id="@+id/item_webcam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/new_node_edit_text_layout">
+                    <EditText
+                        android:id="@+id/node_webcam_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/new_node_edit_text"
+                        android:hint="URL address (required)"
+                        android:inputType="textNoSuggestions|textVisiblePassword"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/new_node_edit_text_layout">
+                    <EditText
+                        android:id="@+id/node_webcam_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        style="@style/new_node_edit_text"
+                        android:hint="Username"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+                <!-- Webcam password  -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/new_node_edit_text_layout">
+                    <EditText
+                        android:id="@+id/node_webcam_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/new_node_edit_text"
+                        android:hint="Password"
+                        android:inputType="textPassword"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

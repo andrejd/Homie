@@ -13,19 +13,20 @@ import com.kvajpoj.homie.service.MqttService.MQTTConnectionStatus;
 public class MqttServiceDelegate
 {
     public interface MessageHandler{
-        public void handleMessage(String topic, byte[] payload);
+        void handleMessage(String topic, byte[] payload);
     }
 
     public interface StatusHandler{
-        public void handleStatus(MQTTConnectionStatus status, String reason);
+        void handleStatus(MQTTConnectionStatus status, String reason);
     }
 
-    public static void startService(Context context, String serverUrl, String serverPort, String username, String password){
+    public static void startService(Context context, String serverUrl, String serverPort, String username, String password, ArrayList<String> topics){
         Intent svc = new Intent(context, MqttService.class);
         svc.putExtra("serverUrl", serverUrl);
         svc.putExtra("serverPort", serverPort);
         svc.putExtra("username", username);
         svc.putExtra("password", password);
+        svc.putStringArrayListExtra("topics", topics);
         context.startService(svc);
     }
 

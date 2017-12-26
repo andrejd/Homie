@@ -14,10 +14,11 @@ public class Settings {
     private String password;
     private String serverPort;
     private String serverUrl;
+    private String homieBaseTopic;
 
     private static Settings instance = null;
-    private SharedPreferences sharedPref;
 
+    private SharedPreferences sharedPref;
     protected Settings() {
         // Exists only to defeat instantiation.
     }
@@ -44,8 +45,17 @@ public class Settings {
 
         String password = sharedPref.getString( "pMqttPassword", "" );
         setPassword(password);
+
+        String homieBase = sharedPref.getString( "pHomieBaseTopic", "" );
+        setHomieBaseTopic(homieBase);
+
+
+
         return true;
     }
+
+    public String getHomieBaseTopic() { return homieBaseTopic; }
+    public void setHomieBaseTopic(String homieBaseTopic) { this.homieBaseTopic = homieBaseTopic; }
 
     public String getPassword() { return password; }
     private void setPassword(String password) { this.password = password; }

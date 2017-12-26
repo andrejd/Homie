@@ -46,9 +46,9 @@ public class MqttService extends Service implements MqttCallback {
     //public static final String APP_ID = "com.dalelane.mqtt";
 
     // constants used to notify the Activity UI of received messages
-    public static final String MQTT_MSG_RECEIVED_INTENT = "com.dalelane.mqtt.MSGRECVD";
-    public static final String MQTT_MSG_RECEIVED_TOPIC = "com.dalelane.mqtt.MSGRECVD_TOPIC";
-    public static final String MQTT_MSG_RECEIVED_MSG = "com.dalelane.mqtt.MSGRECVD_MSGBODY";
+    public static final String MQTT_MSG_RECEIVED_INTENT = "com.kvajpoj.services.MSGRECVD";
+    public static final String MQTT_MSG_RECEIVED_TOPIC = "com.kvajpoj.services.MSGRECVD_TOPIC";
+    public static final String MQTT_MSG_RECEIVED_MSG = "com.kvajpoj.services.MSGRECVD_MSGBODY";
 
     // constants used to notify the Service of messages to send
     public static final String MQTT_PUBLISH_MSG_INTENT = "com.kvajpoj.services.SENDMSG";
@@ -67,7 +67,7 @@ public class MqttService extends Service implements MqttCallback {
 
 
     // constant used internally to schedule the next ping event
-    public static final String MQTT_PING_ACTION = "com.dalelane.mqtt.PING";
+    public static final String MQTT_PING_ACTION = "com.kvajpoj.services.PING";
 
     // MQTT constants
     public static final int MAX_MQTT_CLIENTID_LENGTH = 22;
@@ -91,7 +91,7 @@ public class MqttService extends Service implements MqttCallback {
     // taken from preferences
     //    host name of the server we're receiving push notifications from
     private String                  brokerHostName       = "";
-    private List<String>            topicNames           = new ArrayList<String>();
+    private List<String>            topicNames           = new ArrayList<>();
     private boolean         		cleanStart           = false;
     private String 					username			 = "guest";
     private char[]					password			 = "guest".toCharArray();
@@ -108,22 +108,13 @@ public class MqttService extends Service implements MqttCallback {
 
     // receiver that wakes the Service up when it's time to ping the server
     private PingSender pingSender;
-
     private ExecutorService executor;
 
     // see http://developer.android.com/guide/topics/fundamentals.html#lcycles
     @Override
     public void onCreate() {
         super.onCreate();
-
-        LOG.debug("onCreate");
-
         changeStatus(MQTTConnectionStatus.INITIAL);
-
-        //brokerHostName = "192.168.1.210";
-        topicNames.add("devices/#");
-
-
         executor = Executors.newFixedThreadPool(2);
     }
 
@@ -144,6 +135,14 @@ public class MqttService extends Service implements MqttCallback {
                 String pass = intent.getExtras().getString("password", "guest");
                 if (pass.isEmpty()) pass = "guest";
                 password = pass.toCharArray();
+                topicNames = intent.getExtras().getStringArrayList("topics");
+
+                if( topicNames != null ) {
+                    for (String topic : topicNames) {
+                        LOG.debug("onStartCommand: Subscribing to  topic: " + topic);
+                    }
+                }
+
             }
         }
         doStart(intent, startId);
@@ -188,7 +187,7 @@ public class MqttService extends Service implements MqttCallback {
 
         if (connectionStatus == MQTTConnectionStatus.NOTCONNECTED_USERDISCONNECT) {
             // When calling startService in multiple activities, onStartCommand()
-            // is called when activies are switched. Thus the service would connect
+            // is called when activities are switched. Thus the service would connect
             // automatically even though the user might have requested the disconnect.
             return;
         }

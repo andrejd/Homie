@@ -37,7 +37,14 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     public static final float ALPHA_FULL = 1.0f;
 
     boolean swipeEnabled = true;
+    private final ItemTouchHelperAdapter mAdapter;
 
+
+    public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
+        mAdapter = adapter;
+    }
+
+    /*
     public boolean isSwipeEnabled() {
         return swipeEnabled;
     }
@@ -55,13 +62,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     }
 
     boolean dragEnabled = true;
-
-
-    private final ItemTouchHelperAdapter mAdapter;
-
-    public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
-        mAdapter = adapter;
-    }
+    */
 
     @Override
     public boolean isLongPressDragEnabled() {
@@ -107,7 +108,14 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+    public void onChildDraw(Canvas c,
+                            RecyclerView recyclerView,
+                            RecyclerView.ViewHolder viewHolder,
+                            float dX,
+                            float dY,
+                            int actionState,
+                            boolean isCurrentlyActive
+    ) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             // Fade out the view as it is swiped out of the parent's bounds
             final float alpha = ALPHA_FULL - Math.abs(dX) / (float) viewHolder.itemView.getWidth();

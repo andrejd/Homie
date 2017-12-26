@@ -27,7 +27,7 @@ public class Homie extends Application {
                 .build();
 
         Realm.setDefaultConfiguration(config);
-        Realm.deleteRealm(config);
+        //Realm.deleteRealm(config);
 
         LogConfigurator logConfigurator = new LogConfigurator();
 
