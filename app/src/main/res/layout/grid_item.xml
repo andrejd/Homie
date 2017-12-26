@@ -27,7 +27,7 @@
             android:paddingRight="1dp"
             android:background="@drawable/gradient"/>-->
 
-        <ImageView
+        <com.kvajpoj.homie.components.WebcamImageView
             android:id="@+id/handle"
             android:layout_width="match_parent"
             android:layout_height="0dp"

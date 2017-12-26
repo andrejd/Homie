@@ -1,6 +1,5 @@
 package com.kvajpoj.homie.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.view.MotionEventCompat;
@@ -18,15 +17,13 @@ import com.daimajia.swipe.SwipeLayout;
 import com.kvajpoj.homie.R;
 import com.kvajpoj.homie.common.DrawableHelper;
 import com.kvajpoj.homie.common.Utils;
+import com.kvajpoj.homie.components.WebcamImageView;
 import com.kvajpoj.homie.model.Node;
 import com.kvajpoj.homie.touch.ItemTouchHelperAdapter;
 import com.kvajpoj.homie.touch.ItemTouchHelperViewHolder;
 import com.kvajpoj.homie.touch.OnStartDragListener;
 import com.kvajpoj.homie.touch.SimpleItemTouchHelperCallback;
-
 import org.apache.log4j.Logger;
-
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import io.realm.Realm;
@@ -75,7 +72,6 @@ public class RecyclerViewAdapter extends RealmRecyclerViewAdapter<Node, Recycler
             // TODO add check if drag/drop is enables
             holder.handle.setOnTouchListener(null);
         }
-
 
         holder.handle.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -183,7 +179,7 @@ public class RecyclerViewAdapter extends RealmRecyclerViewAdapter<Node, Recycler
         private TextView textItemValue;
         private TextView twItemUpdated;
         private TextView textItemUnit;
-        private ImageView handle;
+        private WebcamImageView handle;
         private ImageView edit;
         private ImageView imgOffline;
         private FrameLayout nodeHolder;
