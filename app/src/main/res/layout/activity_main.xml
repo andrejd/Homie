@@ -6,7 +6,6 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
 
     tools:context=".activities.MainActivity">
 
@@ -15,6 +14,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:id="@+id/cordinator"
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
@@ -28,55 +28,90 @@
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar_layout"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fadingEdgeLength="@dimen/cardview_default_elevation"
-
                 android:elevation="@dimen/cardview_default_elevation"
                 app:layout_scrollFlags="scroll|snap">
 
 
-
                 <LinearLayout
-                    android:paddingLeft="10dp"
-                    android:layout_marginTop="50dp"
-                    app:layout_collapseMode="parallax"
-                    android:orientation="vertical"
+                    android:id="@+id/llStatusPanel"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="parallax">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/btnStatus"
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_marginTop="2.5dp"
+                            android:background="@drawable/ic_lens_black_24dp"/>
+
+                        <TextView
+                            android:id="@+id/tvStatus"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="6dp"
+                            android:paddingBottom="4dp"
+                            android:text="Disconnected from kvajpoj.com"
+                            android:textSize="12sp"/>
 
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:text="collapse"
-                        android:id="@+id/colapse"/>
-
+                    </LinearLayout>
 
                     <FrameLayout
                         android:id="@+id/cntnt"
-                        android:visibility="gone"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-                    <TextView
-                        app:layout_collapseMode="parallax"
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Kvajpoj"
-                        android:elevation="6dp"
-                        />
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
-                    <TextView
-                        app:layout_collapseMode="parallax"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Kvajpoj"
-                        android:elevation="6dp"
-                        />
-                </FrameLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="6dp"
+                            android:paddingEnd="12dp"
+                            android:paddingStart="12dp">
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:elevation="6dp"
+                                android:text="DISCONNECT"
+                                app:layout_collapseMode="parallax"/>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <Button
+                                android:id="@+id/btnClosePanel"
+                                android:layout_width="50dp"
+                                android:layout_height="30dp"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:elevation="6dp"
+                                android:text="CLOSE"
+                                app:layout_collapseMode="parallax"/>
+
+                        </LinearLayout>
+                    </FrameLayout>
 
                 </LinearLayout>
 
@@ -85,14 +120,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="?attr/colorPrimary"
+                    android:contentInsetStart="13dp"
+                    app:contentInsetStart="13dp"
                     app:layout_collapseMode="parallax"
-                    android:contentInsetStart="10dp"
-                    android:contentInsetLeft="10dp"
-                    app:contentInsetLeft="10dp"
-                    app:contentInsetStart="10dp"
-
-                    app:popupTheme="@style/AppTheme.PopupOverlay" />
-
+                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
 
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -103,7 +134,8 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/content_main"/>
+
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
@@ -111,7 +143,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
+            app:layout_anchorGravity="bottom|right|end"
+            app:behavior_autoHide="true"
             android:src="@drawable/ic_add_24dp" />
+
+        <include layout="@layout/content_main"/>
+
 
     </android.support.design.widget.CoordinatorLayout>
 </android.support.v4.widget.DrawerLayout>

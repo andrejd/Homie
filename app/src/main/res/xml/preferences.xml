@@ -4,66 +4,73 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <PreferenceCategory android:title="Mqtt Server details" >
+    <PreferenceCategory android:title="Mqtt details">
 
-        <EditTextPreference
+        <com.afollestad.materialdialogs.prefs.MaterialEditTextPreference
+            android:defaultValue="kvajpoj.com"
+            android:dialogTitle="Server address"
             android:key="@string/pMqttServerAddress"
-            android:title="MQTT server address"
-            android:summary="URI of Mqtt server"
-            android:defaultValue=""
-            android:icon="@drawable/ic_public_24dp"
-            android:dialogTitle="Mqtt server address"
+            android:inputType="textUri"
+            android:dialogMessage="Please enter Mqtt server address"
             android:singleLine="true"
-            android:dialogIcon="@drawable/ic_public_24dp" />
+            android:summary="Mqtt server URL"
+            android:title="Server address"/>
 
-        <EditTextPreference
+        <com.afollestad.materialdialogs.prefs.MaterialEditTextPreference
+            android:defaultValue="8833"
+            android:dialogTitle="Server port"
             android:key="@string/pMqttServerPort"
-            android:title="MQTT server port"
-            android:summary="Port number for Mqtt server"
-            android:defaultValue="1983"
-            android:icon="@drawable/ic_looks_one_24dp"
-            android:dialogTitle="Mqtt server port number"
+            android:dialogMessage="Enter custom Mqtt server port. When empty, default port 1883 will be used."
             android:numeric="integer"
             android:singleLine="true"
-            android:dialogIcon="@drawable/ic_looks_one_24dp" />
+            android:summary="Port number for Mqtt server"
+            android:title="Server port"/>
 
-        <EditTextPreference
-            android:key="@string/pMqttUsername"
-            android:title="Username"
-            android:summary="Username"
+        <com.afollestad.materialdialogs.prefs.MaterialEditTextPreference
             android:defaultValue=""
-            android:icon="@drawable/ic_person_24dp"
             android:dialogTitle="Username"
+            android:key="@string/pMqttUsername"
+            android:dialogMessage="Your username for authentication with Mqtt server. Leave it empty for signing in as a guest"
             android:singleLine="true"
-            android:dialogIcon="@drawable/ic_person_24dp" />
+            android:summary="Username"
+            android:title="Username"/>
 
-        <EditTextPreference
-            android:key="@string/pMqttPassword"
-            android:title="Secret password"
-            android:summary="Password"
+        <com.afollestad.materialdialogs.prefs.MaterialEditTextPreference
             android:defaultValue=""
-            android:icon="@drawable/ic_lock_outline_24dp"
             android:dialogTitle="Password"
+            android:dialogMessage="Your password for authentication with Mqtt server. Leave it empty for signing in as a guest"
+            android:key="@string/pMqttPassword"
             android:password="true"
             android:singleLine="true"
-            android:dialogIcon="@drawable/ic_lock_outline_24dp" />
+            android:summary="Password"
+            android:title="Password"/>
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Homie node auto discovery">
+    <PreferenceCategory android:title="Homie settings">
 
-        <Preference android:title="Tap to automatically search for Homie nodes"
-        android:key="@string/pHomieAutoDiscovery"
-        android:summary="New nodes will be added to list and existing will be updated with latest data"/>
+        <com.afollestad.materialdialogs.prefs.MaterialEditTextPreference
+            android:defaultValue="homie"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_."
+            android:dialogTitle="Base topic"
+            android:drawableTint="@color/colorAccent"
+            android:dialogMessage="All nodes with matching base topic will be recognized and treated as Homie nodes"
+            android:inputType="textVisiblePassword"
+            android:key="@string/pHomieBaseTopic"
 
+            android:singleLine="false"
+            android:title="Base topic"/>
 
+        <Preference android:title="Delete nodes"
+                    android:key="@string/pHomieDeleteNodes"
+                    android:summary="Tap here to delete all Homie nodes from application. Nodes will be recreated, if Homie base topic is set "/>
     </PreferenceCategory>
 
-    <PreferenceCategory  android:title="About Homie">
+    <PreferenceCategory android:title="About Homies">
 
         <Preference
-            android:title="Version 1.0"
-            android:summary="All rights reserved\nAndrej Debeljak\n2016"/>
+            android:summary="All rights reserved\nAndrej Debeljak\n2017"
+            android:title="Version 1.0"/>
 
 
     </PreferenceCategory>

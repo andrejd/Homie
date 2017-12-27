@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Homie</string>
+    <string name="app_name" translatable="false">Homies</string>
     <string name="action_settings">Nastavitve</string>
+    <string name="title_activity_settings">Nastavitve</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pMqttServerAddress" translatable="false">pMqttServerAddress</string>
+    <string name="pMqttServerPort" translatable="false">pMqttServerPort</string>
+    <string name="pMqttPassword" translatable="false">pMqttPassword</string>
+    <string name="pMqttUsername">pMqttUsername</string>
+    <string name="title_activity_new_node">Node</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">e-naslov</string>
+    <string name="prompt_password">Geslo (opcijsko)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">To polje ni opcijsko</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="prompt_name">Ime</string>
+    <string name="action_create_node">Shrani</string>
+    <string name="promptTopic">Topic</string>
+    <string name="prompt_web">Image Web address</string>
+    <string name="prefPasswordPrompt">Tap to set password</string>
+    <string name="prefUsernamePrompt">Tap to set username</string>
+    <string name="prefServerPrompt">Tap to set Mqtt server address</string>
+    <string name="pHomieBaseTopic">pHomieAutoDiscovery</string>
+
+    <string name="publish_subtopic_hint"><font size="16">Subtopic</font></string>
+    <string name="publish_values_hint"><font size="16">Value On:Off 1-10</font></string>
+    <string name="new_node_mqtt_help">Press DELETE NODE again to confirm your choice!</string>
+    <string name="pHomieDeleteNodes">pHomieDeleteNodes</string>
 </resources>
