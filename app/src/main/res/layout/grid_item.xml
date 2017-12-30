@@ -28,6 +28,7 @@
             android:background="@drawable/gradient"/>-->
 
         <com.kvajpoj.homie.components.WebcamImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/handle"
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -2,15 +2,20 @@ package com.kvajpoj.homie.components;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
-import android.widget.ImageView;
+import android.util.AttributeSet;
 
-/**
- * Created by Andrej on 26.12.2017.
- */
 
 public class WebcamImageView extends AppCompatImageView {
     public WebcamImageView(Context context) {
         super(context);
+    }
+
+    public WebcamImageView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public WebcamImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
 
